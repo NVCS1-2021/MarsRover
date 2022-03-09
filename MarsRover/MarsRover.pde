@@ -1,4 +1,4 @@
-public final float SCALE = 25.0;
+public final float SCALE = 5.0;
 public Rover rover;
 public Surface surface;
 
@@ -9,6 +9,7 @@ public void setup() {
 }
 
 public void draw() {
-  background(220);
-  rover.show(); //<>//
+  background(220);   //<>//
+  surface.show();
+  rover.show();
 }
