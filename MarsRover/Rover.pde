@@ -1,5 +1,5 @@
 public class Rover {
-  public PVector pos, prePos;
+  public PVector pos;
   public PImage img;
   public float SIZE;
   
@@ -13,9 +13,9 @@ public class Rover {
     image(img,pos.x,pos.y,SIZE,SIZE);
   }
   
-  public void move(float[][] terrain) {
-    prePos = pos.copy();
+  public void move(float[][] terrain) {    
     PVector vel = safestDirection(terrain);
+    prePos = pos.copy();
     pos.add(vel);
   }
   
@@ -26,7 +26,8 @@ public class Rover {
     for (int i = -1; i <= 1; i++) {
        for (int j = -1; j <= 1; j++) {
          if (i == 0 && j == 0) continue;
-         if (PVector.sub(pos,prePos).mag() < 0.01) continue;
+         PVector maybePos = new PVector(pos.x+j,pos.y+i);
+         if (PVector.sub(maybePos,prePos).mag() < 0.01) continue;
          float alt = terrain[(int)pos.y+i][(int)pos.x+j];
          float change = alt - currAlt;
          if (change < nearest) {
