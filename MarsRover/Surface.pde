@@ -4,7 +4,7 @@ public class Surface {
   public Surface(float w, float h) {
     noStroke();
     terrain = new float[(int)h][(int)w];
-    float xOff = 0.0, yOff = 0.0, inc = 0.005;
+    float xOff = 0.0, yOff = 0.0, inc = 0.02;
     for (int i = 0; i < h; i++) {
       for (int j = 0; j < w; j++) {
         terrain[i][j] = noise(xOff,yOff);
