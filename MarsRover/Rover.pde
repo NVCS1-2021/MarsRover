@@ -2,6 +2,8 @@ public class Rover {
   public PVector pos;
   public PImage img;
   public float SIZE;
+  public int[][] prevXYs = new int[10][2];
+  public int steps = 0;
   
   public Rover(PVector spawnPoint) {
     this.pos = spawnPoint;
@@ -57,5 +59,29 @@ public class Rover {
     dir.rotate(PI); //why?
     System.out.println(PVector.angleBetween(dir,toTarget));
     return dir;
+  }
+  
+  /**
+  * Adds an x,y pair to prevXYs matrix
+  * Reuses spots, i.e. step 11 stored in index 0
+  * @param x the x component of the position
+  * @param y the y component of the position
+  */
+  private void addPrevPos(int x, int y) {
+    int nextIndex = steps % prevXYs.length;
+    
+  }
+  
+  /**
+  * Determines if an x,y pair is found within 
+  * prevXYs matrix, indicating the position
+  * has been recently visited
+  * @param x the x component of the possible position
+  * @param y the y component of the possible position
+  * @return isPrevPos true when within prevXYs otherwise false 
+  */
+  private boolean isPrevPos(int x, int y) {
+    
+    return false;
   }
 }
