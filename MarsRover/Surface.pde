@@ -50,6 +50,7 @@ public class Surface {
   }
   
   public float averageAltitude() {
+    //calculate total/sum
     float highest = -Float.MAX_VALUE;
     for (int i = 0; i < terrain.length; i++) {
       for (int j = 0; j < terrain[0].length; j++) {
@@ -59,5 +60,10 @@ public class Surface {
       }
     }
     return highest;    
+  }
+  
+  public float variance() {
+    
+    return 0.0;
   }
 }
