@@ -69,7 +69,9 @@ public class Rover {
   */
   private void addPrevPos(int x, int y) {
     int nextIndex = steps % prevXYs.length;
-    
+    prevXYs[nextIndex][0] = x;
+    prevXYs[nextIndex][1] = y;
+    steps++;
   }
   
   /**
@@ -81,7 +83,13 @@ public class Rover {
   * @return isPrevPos true when within prevXYs otherwise false 
   */
   private boolean isPrevPos(int x, int y) {
+    //boolean isPrevPos = false;
+    for (int i = 0; i < prevXYs.length; i++) {
+      if (prevXYs[i][0] == x && prevXYs[i][1] == y) {
+        return true;//isPrevPos = true;
+      }
+    }
     
-    return false;
+    return false; //return isPrevPos;
   }
 }
