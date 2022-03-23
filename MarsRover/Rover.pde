@@ -2,7 +2,7 @@ public class Rover {
   public PVector pos;
   public PImage img;
   public float SIZE;
-  public int[][] prevXYs = new int[10][2];
+  public int[][] prevXYs = new int[200][2];
   public int steps = 0;
   
   public Rover(PVector spawnPoint) {
@@ -48,17 +48,18 @@ public class Rover {
        for (int j = -1; j <= 1; j++) {
          if (i == 0 && j == 0) continue;
          PVector maybeDir = new PVector(j,i);
-         if (PVector.angleBetween(toTarget,maybeDir) > PI * 1.5) continue;
-         if (isPrevPos((int)(pos.x/SCALE)+j,(int)(pos.y/SCALE)+i)) continue;
+         if (PVector.angleBetween(toTarget,maybeDir) > HALF_PI)
+         continue; //<>//
+         if (isPrevPos((int)(pos.x)+j,(int)(pos.y)+i)) continue;
          float alt = terrain[(int)(pos.y/SCALE)+i][(int)(pos.x/SCALE)+j];
          float change = Math.abs(alt - currAlt);
          if (change < nearest) {
            dir = new PVector(j,i);
-           nearest = change; //<>//
+           nearest = change;
          }
        }
     }
-    dir.rotate(PI); //why?
+    //dir.rotate(PI); //why?
     System.out.println(PVector.angleBetween(dir,toTarget));
     return dir;
   }
