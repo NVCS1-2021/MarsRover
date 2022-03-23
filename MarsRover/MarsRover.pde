@@ -9,9 +9,9 @@ public void setup() {
   surface = new Surface(width/SCALE,height/SCALE);
   goal = new Goal();
 }
- //<>//
+
 public void draw() {
-  background(220);   //<>//
+  background(220);  
   surface.show();
   rover.show();
   rover.move(surface.terrain, goal);

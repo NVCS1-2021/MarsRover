@@ -19,6 +19,7 @@ public class Rover {
   public void move(float[][] terrain, Goal g) {    
     PVector vel = pursue(terrain, g);
     pos.add(vel);
+    addPrevPos((int) pos.x,(int) pos.y);
   }
   
   public PVector safestDirection(float[][] terrain) {
@@ -40,19 +41,20 @@ public class Rover {
   }
   public PVector pursue(float[][] terrain, Goal g) {
     PVector toTarget = PVector.sub(g.pos,pos).limit(1);
-    PVector dir = new PVector(0,0);
+    PVector dir = new PVector(1,1);
     float nearest = Float.MAX_VALUE;
     float currAlt = terrain[(int)(pos.y/SCALE)][(int)(pos.x/SCALE)];
     for (int i = -1; i <= 1; i++) {
        for (int j = -1; j <= 1; j++) {
          if (i == 0 && j == 0) continue;
          PVector maybeDir = new PVector(j,i);
-         if (PVector.angleBetween(toTarget,maybeDir) < HALF_PI) continue; //<>//
+         if (PVector.angleBetween(toTarget,maybeDir) > PI * 1.5) continue;
+         if (isPrevPos((int)(pos.x/SCALE)+j,(int)(pos.y/SCALE)+i)) continue;
          float alt = terrain[(int)(pos.y/SCALE)+i][(int)(pos.x/SCALE)+j];
          float change = Math.abs(alt - currAlt);
          if (change < nearest) {
            dir = new PVector(j,i);
-           nearest = change;
+           nearest = change; //<>//
          }
        }
     }
